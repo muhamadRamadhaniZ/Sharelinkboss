@@ -1,38 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-    <title>UploadFile</title>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-info">
-  <a class="navbar-brand" href="#">ShareLinkBoss</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+@extends('layout.main')
 
-    <div class="footer text-center">
-      Copyright by ShareLinkBoss
-   </div>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-</body>
-</html>
+@section('title', 'Data Shared')
+<h1 class="mt-lg-5 ml-lg-3">SHARELINK</h1>
+@section('container')
+
+<div class="container">
+  <div class="row justify-content-center">
+<div class="card w-75 text-center p-3" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Shared File</h5>
+    <p class="card-text">www.sharelinkboss/id/example</p>
+    <embed type="application/pdf" src="data_file/{{$file->file}}" width="100%" height="700px"></embed>
+    <p>{{$file->file}}</p>
+
+    <a href="#" class="btn btn-primary">Download</a>
+    <h5 class="card-title mt-lg-2">Shared Text</h5>
+     <textarea  class="form-control col-sm-10 " id="summary-ckeditor" name="data_text" disabled>{{ $file->data_text }}</textarea>
+    <a href="#" class="btn btn-primary">Copy</a>
+    
+  </div>
+</div>
+</div>
+</div>
+ <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        CKEDITOR.replace( 'summary-ckeditor' );
+    </script>
+@endsection

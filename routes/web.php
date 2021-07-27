@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LinkController;
+use App\Http\Controllers\SharingFileController;
 
 
 /*
@@ -17,10 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/upload', function(){
-    return view('upload');
-});
-Route::get('/show', function(){
-    return view('show');
-});
+// Route::get('/upload', function(){
+//     return view('upload');
+// });
+
+Route::post('/upload', [LinkController::class, 'store'])->name('upload');
+Route::post('show', [SharingFileController::class, 'store'])->name('kirim');
+
 // Route::get('/upload', [LinkController::class, 'index'])->name('upload');

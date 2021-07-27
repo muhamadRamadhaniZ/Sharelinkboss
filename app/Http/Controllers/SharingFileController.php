@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sharing;
+use App\Models\SharingFile;
 use Illuminate\Http\Request;
-
 class SharingFileController extends Controller
 {
     /**
@@ -22,10 +21,7 @@ class SharingFileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +31,24 @@ class SharingFileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nm = $request->file;
+        $namaFile = $nm->getClientOriginalName();
+
+        $dtUpload = new SharingFile;
+        $dtUpload->file = $namaFile;
+        
+        $dtUpload->data_text = $request->data_text;
+
+        $nm->move(public_path().'/data_file', $namaFile);
+        // $dtUpload->save;
+
+        $file = SharingFile::create([
+            'file'=> $dtUpload->file,
+            'data_text'=> $dtUpload->data_text
+        ]);
+        return view('show', compact('file'));
+      
+    
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\judul;
+use App\Models\Link;
 use Illuminate\Http\Request;
 
 class LinkController extends Controller
@@ -35,7 +35,8 @@ class LinkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Link::create($request->all());
+        return view('upload', compact('data'));
     }
 
     /**
